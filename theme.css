@@ -1,0 +1,21 @@
+:root{--rust:#d16f91;--rust-dark:#b95176;--cream:#fff6f7;--line:#f0dfe5}
+.primary-button{border-radius:20px;box-shadow:0 7px 16px rgba(193,91,128,.17)}
+.outline-button,.login-button{border-radius:20px;border-color:#e6bfd0;color:#a25270}
+.outline-button:hover,.login-button:hover{background:#fbedf2}
+.filter.active{background:#f7e3eb;color:#a54e70}
+.category-tag{border-radius:20px}
+.memory-card{border-radius:9px;overflow:hidden;border-color:#f0e3e7}
+.card-action{border-radius:14px}
+.auth-gate{background:radial-gradient(ellipse at 12% 22%,#fff 0,rgba(255,255,255,.58) 14%,transparent 34%),radial-gradient(ellipse at 85% 74%,#f8dfe8 0,transparent 39%),linear-gradient(145deg,#fff8f5,#f9e7ef 52%,#f3e4f2);isolation:isolate}
+.auth-gate:before{content:"✿     ✧           ✿       ♡            ✧       ✿       ✧        ✿";position:absolute;inset:0;z-index:-1;display:block;padding:6vh 4vw;color:rgba(193,102,139,.38);font:clamp(19px,3vw,34px)/2.5 Georgia,serif;letter-spacing:clamp(12px,4vw,54px);text-shadow:0 2px 8px rgba(255,255,255,.72);overflow:hidden;transform:rotate(-7deg);pointer-events:none}
+.auth-gate:after{content:"✧      ♧      ✦      ♡      ✧";position:absolute;inset:auto 0 8%;z-index:-1;text-align:center;color:rgba(165,112,168,.42);font:clamp(18px,3vw,32px) Georgia,serif;letter-spacing:clamp(20px,7vw,100px);pointer-events:none}
+.gate-card{border:1px solid rgba(255,255,255,.9);border-radius:18px;background:rgba(255,253,251,.88);box-shadow:0 22px 70px rgba(151,86,120,.16),inset 0 0 0 7px rgba(247,225,235,.62);backdrop-filter:blur(8px)}
+.gate-card:before{content:"✦   ✿   ✧   ♡   ✧   ✿   ✦";display:block;color:#d18aa4;font:12px Georgia,serif;letter-spacing:.55em;margin:-22px 0 19px;white-space:nowrap}
+.gate-card:after{content:"THE LITTLE MAGIC OF OUR DAYS";display:block;margin-top:19px;color:#b389a1;font-size:8px;letter-spacing:.2em}
+.gate-mark{color:#d16f91;text-shadow:0 4px 14px #f2cfdd;font-size:52px}
+.gate-card h1{color:#704c68}
+.gate-card .eyebrow{color:#bb6788}
+.gate-footnote{color:#aa8fa2}
+.gate-orbit{border-color:rgba(188,126,166,.19)}
+@media(max-width:760px){.gate-card:before{font-size:10px;letter-spacing:.35em}}
+
