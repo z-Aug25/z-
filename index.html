@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f4ed">
+  <title>我们的日常 · 一起慢慢写</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <div class="paper-grain"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="我们的日常首页"><span class="brand-mark">♡</span><span>OURS, ALWAYS</span></a>
+    <nav id="privateNav" aria-label="主导航" hidden><a class="active" href="#memories">我们的故事</a><a href="#little-things">小小日常</a></nav>
+    <div class="account-actions"><button class="login-button" id="loginButton" type="button">登录</button><button class="icon-button" id="settingsButton" aria-label="设置纪念日" title="设置纪念日" hidden>⚙</button></div>
+  </header>
+
+  <section class="auth-gate" id="authGate" hidden>
+    <div class="gate-card"><div class="gate-mark">♡</div><div class="eyebrow">A PRIVATE SPACE FOR TWO</div><h1>这里收着你们的故事。</h1><p>登录后，继续写下只有你们能看的日常与回忆。</p><button class="primary-button" id="gateLogin" type="button">登录后进入 <span>♡</span></button><div class="gate-footnote">这个页面仅对登录账号开放</div></div>
+    <div class="gate-orbit orbit-one"></div><div class="gate-orbit orbit-two"></div>
+  </section>
+
+  <main id="appMain" hidden>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="sparkle">✳</span> A LITTLE SPACE FOR US</div>
+        <h1>把平凡的日子，<br><em>过成我们的故事。</em></h1>
+        <p class="intro">有些瞬间很小，却想和你记很久。<br>这里收好每一次心动、每一段路，还有我们。</p>
+        <div class="hero-actions"><button class="primary-button" id="addMemoryTop"><span>＋</span> 写下一件小事</button><a class="text-link" href="#memories">翻翻我们的故事 <span>↗</span></a></div>
+      </div>
+      <div class="hero-art" aria-label="两个人依偎看日落的插画" role="img">
+        <div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div>
+        <div class="tiny-star star-one">✦</div><div class="tiny-star star-two">✧</div><div class="tiny-star star-three">·</div>
+        <div class="couple"><div class="person person-left"><i class="head"></i><i class="body"></i></div><div class="person person-right"><i class="head"></i><i class="body"></i></div></div>
+        <div class="art-caption">somewhere, with you <span>♡</span></div>
+        <div class="date-stamp">EST. <span id="sinceYear">20——</span></div>
+      </div>
+    </section>
+
+    <section class="love-note" id="little-things"><span class="note-icon">✿</span><div><div class="note-label">A NOTE TO US</div><p>“爱不是某个盛大的时刻，<br class="mobile-break">是每一个普通日子里，都有你。”</p></div><span class="note-heart">♡</span></section>
+
+    <section class="stats-row" aria-label="我们的纪念日信息">
+      <div class="stat"><span class="stat-number" id="daysTogether">—</span><span class="stat-label">一起走过的日子</span></div>
+      <div class="stat-divider">✳</div>
+      <div class="stat"><span class="stat-number" id="memoryCount">0</span><span class="stat-label">收藏的小小瞬间</span></div>
+      <div class="stat-divider">✳</div>
+      <div class="stat anniversary-stat"><span class="stat-number" id="anniversaryText">等你来填写</span><span class="stat-label">我们的纪念日 <button id="setDateInline">设置日期</button></span></div>
+    </section>
+
+    <section class="memories-section" id="memories">
+      <div class="section-heading"><div><div class="eyebrow">OUR LITTLE ARCHIVE</div><h2>日子有迹可循 <span>✳</span></h2><p>把喜欢的瞬间，一页一页留下来。</p></div><button class="outline-button" id="addMemoryBottom">＋ 添加回忆</button></div>
+      <div class="filters" role="group" aria-label="筛选回忆"><button class="filter active" data-filter="all">全部 <span id="allCount">0</span></button><button class="filter" data-filter="date">约会</button><button class="filter" data-filter="trip">旅行</button><button class="filter" data-filter="daily">日常</button><button class="filter" data-filter="milestone">纪念日</button></div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="empty-state" id="emptyState"><span class="empty-doodle">♡</span><h3>你们的故事，等着从第一页开始</h3><p>写下第一次约会、某个好天气，或一句舍不得忘记的话。</p><button class="primary-button" id="emptyAdd">＋ 写下第一件小事</button></div>
+    </section>
+    <footer><span>MADE WITH <b>♡</b> FOR THE TWO OF YOU</span><span>只属于你们的小小角落</span></footer>
+  </main>
+
+  <dialog id="memoryDialog" class="modal">
+    <form id="memoryForm" method="dialog">
+      <button type="button" class="close-button" data-close aria-label="关闭">×</button>
+      <div class="eyebrow">SAVE A LITTLE MOMENT</div><h2 id="formTitle">记下一件小事</h2><p class="modal-subtitle">以后再翻到这里，也能想起那天的心情。</p>
+      <label>给这一天起个名字<input name="title" maxlength="50" placeholder="比如：沿着海边走了好久" required></label>
+      <div class="form-row"><label>发生在<input name="date" type="date" required></label><label>属于哪一类<select name="category"><option value="daily">日常</option><option value="date">约会</option><option value="trip">旅行</option><option value="milestone">纪念日</option></select></label></div>
+      <label>想留下的话<textarea name="note" rows="4" maxlength="500" placeholder="那天发生了什么？你最喜欢哪个瞬间？"></textarea></label>
+      <label class="photo-label">加一张照片 <span>（可选）</span><input name="photo" type="file" accept="image/*"><small>照片只保存在这个浏览器里</small></label>
+      <input type="hidden" name="id"><button class="primary-button submit-button" type="submit">收进我们的故事 <span>♡</span></button>
+    </form>
+  </dialog>
+  <dialog id="dateDialog" class="modal date-modal"><form id="dateForm" method="dialog"><button type="button" class="close-button" data-date-close aria-label="关闭">×</button><div class="eyebrow">OUR DAY ONE</div><h2>你们从哪一天开始？</h2><p class="modal-subtitle">设置后，这里会替你们记住一起走过的日子。</p><label>我们的纪念日<input type="date" name="anniversary" required></label><button class="primary-button submit-button" type="submit">记住这一天 <span>♡</span></button></form></dialog>
+  <dialog id="authDialog" class="modal auth-modal"><form id="authForm" method="dialog"><button type="button" class="close-button" data-auth-close aria-label="关闭">×</button><div class="eyebrow">WELCOME BACK</div><h2>登录你们的小小角落</h2><p class="modal-subtitle">使用你们自己设置的账号和密码。</p><label>账号<input name="email" type="email" autocomplete="username" placeholder="邮箱地址" required></label><label>密码<input name="password" type="password" autocomplete="current-password" placeholder="输入密码" required></label><p class="auth-error" id="authError" role="alert"></p><button class="primary-button submit-button" type="submit">登录 <span>♡</span></button></form></dialog>
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
