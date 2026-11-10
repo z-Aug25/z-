@@ -1,0 +1,8 @@
+.auth-gate{background:linear-gradient(90deg,rgba(37,25,38,.74),rgba(67,38,66,.24) 66%,rgba(87,51,87,.08)),url("微信图片_20261110225307_53_56.jpg") center 43%/cover no-repeat;}
+.gate-card{margin-left:0;margin-right:auto;background:rgba(255,252,255,.91);border-color:rgba(255,255,255,.85)}
+.welcome-banner{position:relative;display:grid;grid-template-columns:minmax(260px,.8fr) 1.2fr;align-items:center;min-height:260px;margin:35px 0 0;background:linear-gradient(120deg,#fff5f8,#fae6ef);border:1px solid #f0dce5;border-radius:12px;overflow:hidden}
+.welcome-banner>img{width:100%;height:260px;object-fit:contain;object-position:center bottom}
+.welcome-copy{padding:28px 34px 28px 10px}
+.welcome-copy h2{font:500 clamp(20px,3vw,28px)/1.55 var(--serif);color:#754e6c;margin:13px 0 9px}
+.welcome-copy p{font-size:12px;color:#8d7182;margin:0}.welcome-copy p span{color:var(--rust)}
+@media(max-width:680px){.auth-gate{background-position:59% center}.gate-card{margin:auto}.welcome-banner{grid-template-columns:1fr;margin-top:23px}.welcome-banner>img{height:210px}.welcome-copy{text-align:center;padding:6px 20px 23px}.welcome-copy .eyebrow{justify-content:center}}
