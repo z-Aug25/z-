@@ -96,9 +96,13 @@
     supabase = getSupabase();
     if (!supabase) { authError.textContent = '网站还没有连接云端账号服务，请先完成发布设置。'; return; }
     const button = authForm.querySelector('button[type="submit"]'); button.disabled = true; button.textContent = '正在登录…';
-    const { data, error } = await supabase.auth.signInWithPassword({ email: authForm.elements.email.value.trim(), password: authForm.elements.password.value });
+    const { data: login, error: loginError } = await supabase.functions.invoke('username-login', {
+      body: { username: authForm.elements.username.value.trim(), password: authForm.elements.password.value }
+    });
     button.disabled = false; button.innerHTML = '登录 <span>♡</span>';
-    if (error) { authError.textContent = '账号或密码不正确，请再试一次。'; return; }
+    if (loginError || !login?.access_token || !login?.refresh_token) { authError.textContent = '账号或密码不正确，请再试一次。'; return; }
+    const { data, error: sessionError } = await supabase.auth.setSession({ access_token: login.access_token, refresh_token: login.refresh_token });
+    if (sessionError) { authError.textContent = '登录暂时不可用，请稍后重试。'; return; }
     session = data.session; authDialog.close(); setSignedIn(true);
     try { await loadCloud(); } catch { authError.textContent = '账号已登录，但云端记录服务尚未完成设置。'; setSignedIn(false); }
   });

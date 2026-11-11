@@ -37,21 +37,24 @@ Deno.serve(async (request) => {
   }
 
   const url = Deno.env.get("SUPABASE_URL");
-  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  const publicKey = Deno.env.get("SUPABASE_ANON_KEY") ??
-    Object.values(JSON.parse(Deno.env.get("SUPABASE_PUBLISHABLE_KEYS") ?? "{}"))[0];
+  function firstKey(legacyName: string, dictionaryName: string): string | undefined {
+    const legacy = Deno.env.get(legacyName);
+    if (legacy) return legacy;
+    try {
+      const values = Object.values(JSON.parse(Deno.env.get(dictionaryName) ?? "{}"));
+      return values.find((value): value is string => typeof value === "string");
+    } catch { return undefined; }
+  }
+  const serviceKey = firstKey("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEYS");
+  const publicKey = firstKey("SUPABASE_ANON_KEY", "SUPABASE_PUBLISHABLE_KEYS");
   if (!url || !serviceKey || !publicKey) return json({ error: "service_unavailable" }, 503);
 
   const admin = createClient(url, serviceKey, { auth: { persistSession: false } });
-  const { data: account, error: lookupError } = await admin
-    .schema("private")
-    .from("user_accounts")
-    .select("email,is_active")
-    .eq("username", username)
-    .maybeSingle();
-
-  // Return the same response for unknown and disabled users to avoid account enumeration.
-  if (lookupError || !account?.is_active) return json({ error: "invalid_credentials" }, 401);
+  const { data: accounts, error: lookupError } = await admin.rpc("lookup_login_account", {
+    p_username: username,
+  });
+  const account = Array.isArray(accounts) ? accounts[0] : null;
+  if (lookupError || !account?.is_active || !account?.email) return json({ error: "invalid_credentials" }, 401);
 
   const response = await fetch(`${url}/auth/v1/token?grant_type=password`, {
     method: "POST",
